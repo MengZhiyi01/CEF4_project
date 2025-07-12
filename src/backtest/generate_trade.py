@@ -9,25 +9,8 @@ def generate_trade_records(
     account: float = 2_000_000,
     position_ratio: float = 0.1,
     holding_minutes: int = 5,
+    confirm_times: int = 1  # 新增参数：连续信号确认次数
 ) -> pd.DataFrame:
-    """
-    根据多空信号和资金控制，生成交易记录（开仓和平仓）回测结果。
-
-    参数:
-        merged_df: 输入包含预测信号和行情的DataFrame，必须包含列：
-                   ['datetime', 'contract', 'pred', 'vwap', 'Multiplier', 'Margin_ratio']
-        long_threshold: 开多仓阈值
-        short_threshold: 开空仓阈值
-        fee_rate: 手续费率（开平仓均计算）
-        risk_control: 是否启用爆仓风险控制（亏损不超过保证金）
-        account: 初始账户资金
-        position_ratio: 单笔交易占用资金比例
-        holding_minutes: 持仓时间（分钟）
-
-    返回:
-        pd.DataFrame: 包含所有交易记录，列有合同、方向、开平仓时间价格、收益等
-    """
-
     trade_records = []
 
     for contract, contract_df in merged_df.groupby('contract'):
@@ -35,26 +18,48 @@ def generate_trade_records(
         contract_df.set_index('datetime', inplace=True)
 
         position = None
+        long_confirm_count = 0
+        short_confirm_count = 0
 
         for curr_time, row in contract_df.iterrows():
             if position is None:
+                # 累加确认次数
                 if row['pred'] > long_threshold:
-                    position = 'long'
+                    long_confirm_count += 1
+                    short_confirm_count = 0
                 elif row['pred'] < short_threshold:
+                    short_confirm_count += 1
+                    long_confirm_count = 0
+                else:
+                    long_confirm_count = 0
+                    short_confirm_count = 0
+
+                # 开仓条件：连续满足阈值
+                if long_confirm_count >= confirm_times:
+                    position = 'long'
+                elif short_confirm_count >= confirm_times:
                     position = 'short'
                 else:
-                    continue  # 无信号不开仓
+                    continue  # 没达到确认次数，不开仓
 
                 entry_time = curr_time + pd.Timedelta(minutes=1)
-                exit_time = curr_time + pd.Timedelta(minutes=holding_minutes)
-                entry_price = row['vwap']
+
+                if entry_time in contract_df.index:
+                    entry_price = contract_df.loc[entry_time, 'vwap']
+                else:
+                    future_prices = contract_df.loc[contract_df.index >= entry_time]
+                    if future_prices.empty:
+                        position = None
+                        continue  # 或 break，跳过这次交易
+                    entry_price = future_prices.iloc[0]['vwap']
+                    entry_time = future_prices.index[0]  # 更新真实的 entry_time
+                exit_time = entry_time + pd.Timedelta(minutes=holding_minutes-1)
+
                 margin_ratio = row['Margin_ratio']
                 multiplier = row['Multiplier']
 
-                # 计算单笔持仓手数
                 position_size = int(position_ratio * account / (margin_ratio * entry_price * multiplier))
                 if position_size == 0:
-                    # 保证金不足，不开仓
                     position = None
                     continue
 
@@ -78,7 +83,6 @@ def generate_trade_records(
                     trade_value = position_size * multiplier * entry_price
                     margin_required = trade_value * margin_ratio
 
-                    # 爆仓风险控制
                     if gross_pnl < -margin_required and risk_control:
                         gross_pnl = -margin_required
                         net_pnl = gross_pnl - fee
@@ -98,6 +102,8 @@ def generate_trade_records(
                         'position_size': position_size
                     })
 
-                    position = None  # 清仓
+                    position = None
+                    long_confirm_count = 0
+                    short_confirm_count = 0  # 重置确认计数
 
     return pd.DataFrame(trade_records)
