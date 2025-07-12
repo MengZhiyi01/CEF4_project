@@ -1,0 +1,61 @@
+{
+    "experiment": {
+        "name": "futures_transformer",
+        "seed": 42,
+        "log_interval": 100,
+        "save_dir": "./experiments",
+        "save_best_only": true
+    },
+    "data": {
+        "input_path": "data/futures_data_2024.parquet",
+        "feature_start_idx": 2,
+        "feature_end_idx": 133,
+        "label_col": "label_vwap_5m",
+        "seq_len": 60,
+        "pred_len": 1,
+        "test_split_date": "2024-12-15"
+    },
+    "feature_engineering": {
+        "cross_sectional_normalize": true,
+        "add_time_features": true,
+        "normalize_by_instrument": false,
+        "trading_session_aware": true,
+        "day_session_hours": [[9, 11.5], [13.5, 15]],
+        "night_session_hours": [[21, 23.99], [0, 2.5]]
+    },
+    "model": {
+        "d_model": 256,
+        "n_heads": 8,
+        "n_layers": 6,
+        "d_ff": 1024,
+        "dropout": 0.1,
+        "attention_dropout": 0.1,
+        "position_encoding": true,
+        "layer_norm_eps": 1e-5,
+        "hidden_dims": [256, 128, 64],
+        "dropout_rate": 0.1,
+        "activation": "relu",
+        "batch_norm": true
+    },
+    "training": {
+        "num_epochs": 100,
+        "batch_size": 256,
+        "learning_rate": 0.0001,
+        "weight_decay": 0.01,
+        "gradient_clip_value": 1.0,
+        "early_stopping_patience": 15,
+        "warmup_steps": 1000,
+        "optimizer": "adamw",
+        "scheduler": "cosine",
+        "scheduler_params": {
+            "T_max": 100,
+            "eta_min": 1e-6
+        }
+    },
+    "optimization": {
+        "optimizer": "adamw",
+        "betas": [0.9, 0.999],
+        "eps": 1e-8,
+        "amsgrad": false
+    }
+} 

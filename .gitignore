@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+*.egg
+
+# Virtual Environment
+venv/
+.venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Data files
+*.parquet
+*.csv
+*.xlsx
+data/
+
+# Model checkpoints
+*.pth
+*.pt
+*.ckpt
+
+# Logs
+*.log
+logs/
+
+# Experiments
+experiments/
+
+# TensorBoard
+runs/
+tensorboard/
+
+# System
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+tmp/ 

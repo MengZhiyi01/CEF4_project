@@ -1,0 +1,55 @@
+# Futures prediction model configuration
+
+# Data configuration
+data:
+  input_path: "../final_filtered_data_1min.parquet"
+  train_test_split_date: "2024-12-15"
+  train_val_split_ratio: 0.889
+  
+  # Feature configuration
+  datetime_col: "datetime"
+  instrument_col: "instrument"
+  feature_start_idx: 2
+  feature_end_idx: 133
+  label_col: "label_vwap_5m"
+  
+  # Data processing
+  normalize: true
+  handle_missing: "forward_fill"
+  
+# Model configuration
+model:
+  name: "FNN"
+  hidden_dims: [256, 128, 64]
+  dropout_rate: 0.2
+  activation: "relu"
+  batch_norm: true
+  
+# Training configuration
+training:
+  batch_size: 512
+  num_epochs: 100
+  learning_rate: 0.001
+  weight_decay: 1e-5
+  early_stopping_patience: 10
+  gradient_clip_value: 1.0
+  
+  # Optimizer
+  optimizer: "adam"
+  scheduler: "cosine"
+  scheduler_params:
+    T_max: 100
+    
+# Experiment configuration
+experiment:
+  name: "futures_fnn_baseline"
+  seed: 42
+  save_dir: "./experiments"
+  log_interval: 100
+  save_best_only: true
+  
+# Feature engineering
+feature_engineering:
+  add_time_features: true
+  add_rolling_features: false
+  rolling_windows: [5, 10, 20] 

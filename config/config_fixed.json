@@ -1,0 +1,55 @@
+{
+    "data": {
+        "input_path": "../final_filtered_data_1min.parquet",
+        "train_test_split_date": "2024-12-14",
+        "train_val_split_ratio": 0.889,
+        "datetime_col": "datetime",
+        "instrument_col": "instrument",
+        "feature_start_idx": 2,
+        "feature_end_idx": 133,
+        "label_col": "label_vwap_5m",
+        "normalize": true,
+        "handle_missing": "forward_fill"
+    },
+    "model": {
+        "name": "FNN",
+        "hidden_dims": [
+            256,
+            128,
+            64
+        ],
+        "dropout_rate": 0.2,
+        "activation": "leaky_relu",
+        "batch_norm": true
+    },
+    "training": {
+        "batch_size": 256,
+        "num_epochs": 50,
+        "learning_rate": 0.01,
+        "weight_decay": 1e-3,
+        "early_stopping_patience": 10,
+        "gradient_clip_value": 10.0,
+        "optimizer": "adam",
+        "scheduler": "step",
+        "scheduler_params": {
+            "step_size": 15,
+            "gamma": 0.5
+        }
+    },
+    "experiment": {
+        "name": "futures_fnn_comprehensive_fix_v4",
+        "seed": 42,
+        "save_dir": "./experiments",
+        "log_interval": 100,
+        "save_best_only": true
+    },
+    "feature_engineering": {
+        "add_time_features": true,
+        "add_rolling_features": false,
+        "rolling_windows": [
+            5,
+            10,
+            20
+        ]
+    }
+} 
