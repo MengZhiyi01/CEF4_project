@@ -734,7 +734,7 @@ The successful completion of this research demonstrates that with careful archit
 
 ---
 
-**Authors**: [Your Name]  
-**Institution**: [Your Institution]  
-**Date**: December 2024  
+**Authors**: Haoyuan Wei
+**Institution**: PHBS  
+**Date**: July 2025  
 **Version**: 1.0 
