@@ -1,2 +1,0 @@
-hidden_size,num_layers,dropout,embedding_dim,lr,batch_size,val_loss,test_ic,test_mse,test_r2
-64,1,0.2,10,0.0001,512,0.2193729430437088,0.00507689194576065,1.6365128203688073e-06,-0.0038858858823798137
