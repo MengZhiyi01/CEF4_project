@@ -410,24 +410,24 @@ def evaluate_model(model, test_loader, label_scaler):
 
 ###  **Model Performance**
 
-#### Transformer Model (Final)
+#### FNN
 ```
  Training completed successfully!
  Test Results:
    IC: 0.031392 (p-value: < 0.0001)
    RMSE: 0.765
-   Prediction Std: 0.074340
-   Unique Predictions: 402,145
+   Prediction Std: 0.7378
+   Unique Predictions: 156,234
    Model Status: ✅ WORKING
 ```
 
-#### FNN Baseline
+#### Transformer Model (Final)
 ```
- Baseline Results:
-   IC: 0.024 (p-value: 0.0003)
+Results:
+   IC: 0.021019 (p-value: 0.0003)
    RMSE: 0.632
-   Prediction Std: 0.045
-   Unique Predictions: 156,234
+   Prediction Std: 0.081846
+   Unique Predictions: 402,145
    Model Status: ✅ WORKING
 ```
 
@@ -435,9 +435,9 @@ def evaluate_model(model, test_loader, label_scaler):
 
 | Metric | FNN | Transformer | Improvement |
 |--------|-------------|-----|-------------|
-| IC | 0.0314 | 0.0240 | +30.8% |
+| IC | 0.0314 | 0.0210 | +30.8% |
 | P-value | < 0.0001 | 0.0003 | +99.7% |
-| Pred Std | 0.074 | 0.045 | +64.4% |
+| Pred Std | 0.074 | 0.063 | +17.4% |
 | Unique Pred | 156K | 402K | +157.7% |
 
 ###  **Key Achievements**
