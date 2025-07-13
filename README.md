@@ -159,6 +159,9 @@ futures_prediction/
 │   │   ├── 📄 metrics.py            # Evaluation metrics
 │   │   ├── 📄 logger.py             # Logging utilities
 │   │   └── 📄 __init__.py
+│   ├── 📁 backtest/                 # Backtest functions
+│   │   ├── 📄 analyze.py            # Trading signal analyze and visualization
+│   │   └── 📄 generate_trade.py     # Generate trading signal based on prediction
 │   ├── 📁 data/                     # Data processing
 │   └── 📄 trainer.py                # Training orchestrator
 ├── 📁 experiments/                  # Experiment results
