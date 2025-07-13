@@ -7,6 +7,10 @@
 A comprehensive deep learning framework for futures price prediction using Transformer and Feed-Forward Neural Network architectures. This project implements state-of-the-art techniques for short-term price forecasting in Chinese futures markets using high-frequency trading data.
 
 ## FOR ALSTM OR MASTER MODEL, PLEASE CHECK THE MAIN BRANCH!
+## PLEASE DOWNLOAD NEEDED DATA IN THIS FOLDER
+
+### LINK: https://pan.baidu.com/s/1cEIpqd2fdiLyothT3QU7AA?pwd=jbq5 PASSWORD: jbq5 
+
 ## Table of Contents
 
 - [Features](#features)
