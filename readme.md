@@ -1,8 +1,9 @@
 
-# Intraday Return Prediction in the Chinese Futures Market
+# Intraday Return Prediction in the Chinese Futures Market (ALSTM/MASTER)
 
 This repository contains the final project for the Deep Learning course at Peking University HSBC Business School. The project focuses on using deep learning models to predict 5-minute intraday returns in the Chinese futures market.
 
+## FOR FNN OR TRANSFORMER MODEL, PLEASE CHECK THE MASTER BRANCH!
 ## 📁 Project Structure
 
 ```
