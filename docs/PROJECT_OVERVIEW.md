@@ -651,7 +651,7 @@ fnn_results = {
 
 #### 6.3.2 Model Comparison
 
-| Metric | Transformer | FNN | Improvement |
+| Metric | FNN  | Transformer | Improvement |
 |--------|-------------|-----|-------------|
 | IC | 0.0314 | 0.0240 | +30.8% |
 | RMSE | 0.765 | 0.632 | -21.0% |
@@ -809,10 +809,3 @@ The research demonstrates that with careful architectural design, robust preproc
 7. Lo, A. W., & MacKinlay, A. C. (1999). A non-random walk down Wall Street. Princeton University Press.
 
 8. Campbell, J. Y., Lo, A. W., & MacKinlay, A. C. (1997). The econometrics of financial markets. Princeton University Press.
-
----
-
-**Authors**: Deep Learning Research Team  
-**Institution**: [Your Institution]  
-**Date**: [Current Date]  
-**Version**: 1.0 
