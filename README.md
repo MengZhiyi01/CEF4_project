@@ -168,6 +168,9 @@ futures_prediction/
 │   ├── 📄 config_transformer.json   # Transformer config
 │   ├── 📄 config_demo.json          # Demo configuration
 │   └── 📄 config.yaml               # General config
+├── 📁 notebooks/                    # notebooks
+│   ├── 📄 backtest_fnn.ipynb        # notebooks of backtest of prediction of fnn
+│   ├── 📄 backtest_transformer.ipynb# notebooks of backtest of prediction of transformer
 ├── 📁 docs/                         # Documentation
 │   ├── 📄 ACADEMIC_PROJECT_OVERVIEW.md
 │   ├── 📄 PROJECT_GUIDE.md
