@@ -642,7 +642,7 @@ prediction_stats = {
 
 ```python
 fnn_results = {
-    'Test IC': 0.024,
+    'Test IC': 0.0210,
     'Test RMSE': 0.632,
     'Training Time': '5 minutes',
     'Prediction Std': 0.045
@@ -653,7 +653,7 @@ fnn_results = {
 
 | Metric | FNN  | Transformer | Improvement |
 |--------|-------------|-----|-------------|
-| IC | 0.0314 | 0.0240 | +30.8% |
+| IC | 0.0314 | 0.0210 | +30.8% |
 | RMSE | 0.765 | 0.632 | -21.0% |
 | Pred Std | 0.074 | 0.045 | +64.4% |
 
