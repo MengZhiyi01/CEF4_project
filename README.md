@@ -50,12 +50,12 @@ A comprehensive deep learning framework for futures price prediction using Trans
 
 | Model | IC | P-value | RMSE | Prediction Diversity |
 |-------|----|---------|----- |-------------------|
-| **Transformer** | **0.0314** | **< 0.0001** | 0.765 | 402,145 unique values |
-| FNN Baseline | 0.0240 | 0.0003 | 0.632 | 156,234 unique values |
+| **FNN** | **0.0314** | **< 0.0001** | 0.765 | 402,145 unique values |
+| Transformer | 0.0240 | 0.0003 | 0.632 | 156,234 unique values |
 
 ###  **Model Comparison**
 
-- **30.8% improvement** in Information Coefficient over baseline
+- **30.8% improvement** in Information Coefficient over Transformer
 - **Statistically significant** predictions (p-value < 0.0001)
 - **Solved constant prediction problem** that commonly affects financial deep learning
 - **High prediction diversity** ensuring meaningful forecasts
@@ -428,12 +428,12 @@ def evaluate_model(model, test_loader, label_scaler):
 
 ###  **Performance Comparison**
 
-| Metric | Transformer | FNN | Improvement |
+| Metric | FNN | Transformer | Improvement |
 |--------|-------------|-----|-------------|
 | IC | 0.0314 | 0.0240 | +30.8% |
 | P-value | < 0.0001 | 0.0003 | +99.7% |
 | Pred Std | 0.074 | 0.045 | +64.4% |
-| Unique Pred | 402K | 156K | +157.7% |
+| Unique Pred | 156K | 402K | +157.7% |
 
 ###  **Key Achievements**
 
